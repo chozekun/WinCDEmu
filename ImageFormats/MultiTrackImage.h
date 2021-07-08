@@ -47,14 +47,6 @@ namespace ImageFormats
 			if ((unsigned)((EndFileOffset - StartFileOffset) % imageSectorSize))
 				return false;
 
-			StartFileOffset += Mode.DataOffsetInSector;
-			EndFileOffset += Mode.DataOffsetInSector;
-
-			ULONGLONG fileSize = m_pFile->GetSize();
-			
-			if (EndFileOffset > fileSize)
-				EndFileOffset = fileSize;
-
 			TrackInfo info = {Mode, StartFileOffset, imageSectorSize, (unsigned)((EndFileOffset - StartFileOffset) / imageSectorSize)};
 
 			info.ImageSectorSize = imageSectorSize;
